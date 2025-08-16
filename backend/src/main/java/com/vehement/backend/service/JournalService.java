@@ -16,6 +16,8 @@ public class JournalService {
         return (List<Journal>) journalRepo.findAll();
     }
 
+    //TODO: get journal by a particular user
+
     public Journal getJournalById(String id){
         Optional<Journal> journal = journalRepo.findById(id);
         if(journal.isPresent()){
@@ -23,4 +25,18 @@ public class JournalService {
         }
         return null;
     }
+
+    //TODO: CREATE
+
+    //TODO: UPDATE
+
+    public Boolean deleteJournalById(String id){
+        Optional<Journal> journal = journalRepo.findById(id);
+        if(journal.isPresent()){
+            journalRepo.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+    
 }

@@ -36,4 +36,16 @@ public class JournalController {
 
         return new ResponseEntity<>(journal, HttpStatus.OK);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Journal> deleteJournalById(@PathVariable String id){
+        Boolean isDeleted = journalService.deleteJournalById(id);
+
+        if(isDeleted){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
