@@ -15,4 +15,12 @@ public class JournalService {
     public List<Journal> getAllJournals(){
         return (List<Journal>) journalRepo.findAll();
     }
+
+    public Journal getJournalById(String id){
+        Optional<Journal> journal = journalRepo.findById(id);
+        if(journal.isPresent()){
+            return (Journal) journal.get();
+        }
+        return null;
+    }
 }

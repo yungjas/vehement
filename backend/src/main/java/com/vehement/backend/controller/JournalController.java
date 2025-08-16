@@ -25,4 +25,15 @@ public class JournalController {
         }
         return new ResponseEntity<>(allJournals, HttpStatus.OK);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Journal> getJournalById(@PathVariable String id){
+        Journal journal = journalService.getJournalById(id);
+
+        if(journal == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+
+        return new ResponseEntity<>(journal, HttpStatus.OK);
+    }
 }
