@@ -8,7 +8,6 @@ import java.util.*;
 
 @Repository
 public interface JournalRepository extends MongoRepository<Journal, String> {
-    Optional<Journal> findByJournalId(String journalId);
     Optional<Journal> findByAuthorUsername(String authorUsername);
     Optional<Journal> findByTitle(String title);
 }
