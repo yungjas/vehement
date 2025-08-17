@@ -9,6 +9,12 @@ import java.util.*;
 
 import com.vehement.backend.service.JournalService;
 import com.vehement.backend.model.Journal;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
 
 @RestController
 @CrossOrigin
@@ -35,6 +41,28 @@ public class JournalController {
         }
 
         return new ResponseEntity<>(journal, HttpStatus.OK);
+    }
+
+    @PostMapping("create")
+    public ResponseEntity<Journal> createJournal(@RequestBody Journal journal) {
+        Journal createdJournal = journalService.createJournal(journal);
+
+        if(createdJournal == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+
+        return new ResponseEntity<>(createdJournal, HttpStatus.OK);
+    }
+    
+    @PutMapping("update-journal/{id}")
+    public ResponseEntity<Journal> putMethodName(@PathVariable String id, @RequestBody Journal updateJournal) {
+        Journal updatedJournal = journalService.updateJournal(id, updateJournal);
+        
+        if(updatedJournal == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+
+        return new ResponseEntity<>(updatedJournal, HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")

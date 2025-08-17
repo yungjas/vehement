@@ -27,8 +27,29 @@ public class JournalService {
     }
 
     //TODO: CREATE
+    public Journal createJournal(Journal journal){
+        journalRepo.save(journal);
+        return journal;
+    }
 
     //TODO: UPDATE
+    public Journal updateJournal(String id, Journal updateJournal){
+        Optional<Journal> journal = journalRepo.findById(id);
+        Journal journalData = null;
+
+        if(journal.isPresent()){
+            journalData = journal.get();
+            journalData.setTitle(updateJournal.getTitle());
+            journalData.setDesc(updateJournal.getDesc());
+            journalData.setAuthorUsername(updateJournal.getAuthorUsername());
+            journalData.setDatePublished(updateJournal.getDatePublished());
+            journalData.setDateEdited(updateJournal.getDateEdited());
+
+            journalRepo.save(journalData);
+        }
+
+        return journalData;
+    }
 
     public Boolean deleteJournalById(String id){
         Optional<Journal> journal = journalRepo.findById(id);
