@@ -33,7 +33,7 @@ public class JournalService {
     }
 
     //TODO: UPDATE
-    public Journal updateJournal(String id, Journal updateJournal){
+    public Journal updateJournalById(String id, Journal updateJournal){
         Optional<Journal> journal = journalRepo.findById(id);
         Journal journalData = null;
 
